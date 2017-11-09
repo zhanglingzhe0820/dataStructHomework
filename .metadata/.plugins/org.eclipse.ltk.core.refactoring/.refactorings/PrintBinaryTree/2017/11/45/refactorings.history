@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;BinaryNode.java&apos; to &apos;DataStructureHelper/src/Util&apos;&#x0D;&#x0A;- Original project: &apos;PrintBinaryTree&apos;&#x0D;&#x0A;- Destination element: &apos;DataStructureHelper/src/Util&apos;&#x0D;&#x0A;- Original element: &apos;BinaryNode.java&apos;" description="Copy compilation unit" destination="=DataStructureHelper/src&lt;Util" element1="/src&lt;{BinaryNode.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1510227088443" units="1" version="1.0"/>
+</session>

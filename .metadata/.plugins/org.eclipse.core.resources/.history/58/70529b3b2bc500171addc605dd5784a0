@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="static/css/reset.css">
+<link rel="stylesheet" href="static/css/supersized.css">
+<link rel="stylesheet" href="static/css/style.css">
+<script src="static/js/jquery-1.8.2.min.js" ></script>
+<script src="static/js/supersized.3.2.7.min.js" ></script>
+<script src="static/js/supersized-init.js" ></script>
+<title>Data Structure Helper</title>
+</head>
+<body>
+	<div class="page-container">
+            <h1>sign in</h1>
+                <input type="text" name="username" class="username" placeholder="请输入您的邮箱" id="username">
+                <input type="password" name="password" class="password" placeholder="请输入您的密码" id="password">    
+        </div>	
+</body>
+</html>

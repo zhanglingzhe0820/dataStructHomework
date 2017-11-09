@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="static/css/sign_in/reset.css">
+<link rel="stylesheet" href="static/css/sign_in/supersized.css">
+<link rel="stylesheet" href="static/css/sign_in/style.css">
+<script src="static/js/sign_in/jquery-1.8.2.min.js" ></script>
+<script src="static/js/sign_in/supersized.3.2.7.min.js" ></script>
+<script src="static/js/sign_in/supersized-init.js" ></script>
+<title>Data Structure Helper</title>
+</head>
+<body>
+
+</body>
+</html>

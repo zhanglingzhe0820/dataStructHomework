@@ -1,37 +1,42 @@
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PrintBinaryTree {
 
 	public static void main(String[] args) {
 		new PrintBinaryTree().run();
 	}
+	
+	public static BinaryNode<String> makeTree(String input){
+		String[] elements=input.split(" ");
+		Queue<BinaryNode<String>> q=new LinkedList<BinaryNode<String>>();
+		BinaryNode<String> result=new BinaryNode<String>(elements[0]);
+		q.add(result);
+		BinaryNode<String> head,node1,node2;
+		for(int i=1;i<elements.length;i+=2){
+			node1=new BinaryNode<String>(elements[i]);
+			node2=new BinaryNode<String>(elements[i+1]);
+			q.add(node1);
+			q.add(node2);
+			head=q.poll();
+			
+			if(!(head.data.equals("NULL")&&!node1.data.equals("NULL"))){
+				head.left=node1;
+				head.right=node2;
+			}
+			else{
+				i-=2;
+			}
+		}
+		return result;
+	}
 
 	public void run(){
-		BinaryTree<String> binaryTreeA=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeB=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeC=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeD=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeE=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeF=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeG=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeH=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeI=new BinaryTree<String>();
-		BinaryTree<String> binaryTreeEmpty=new BinaryTree<String>();
-		
-		binaryTreeD.MakeTree("D", binaryTreeEmpty, binaryTreeEmpty);
-		binaryTreeG.MakeTree("G", binaryTreeEmpty, binaryTreeEmpty);
-		binaryTreeH.MakeTree("H", binaryTreeEmpty, binaryTreeEmpty);
-		binaryTreeI.MakeTree("I", binaryTreeEmpty, binaryTreeEmpty);
-		
-		binaryTreeB.MakeTree("B", binaryTreeD, binaryTreeEmpty);
-		binaryTreeE.MakeTree("E", binaryTreeEmpty, binaryTreeG);
-		binaryTreeF.MakeTree("F", binaryTreeH, binaryTreeI);
-		binaryTreeC.MakeTree("C", binaryTreeE, binaryTreeF);
-		binaryTreeA.MakeTree("A", binaryTreeB, binaryTreeC);
-		
-		binaryTreeA.preOrder();
+		BinaryNode<String> header=makeTree("aa bb NULL NULL cc NULL NULL NULL NULL NULL dd NULL NULL NULL NULL");
+		header.preOrder();
 		System.out.println();
-		binaryTreeA.inOrder();
+		header.inOrder();
 		System.out.println();
-		binaryTreeA.postOrder();
+		header.postOrder();
 	}
 }
