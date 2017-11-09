@@ -85,6 +85,7 @@
 
         <div id="section">
             <textarea class="form-control" style="height:200px" placeholder="广度优先输入一颗二叉树" id="widthTree"></textarea>
+            <div style="height:50px"></div>
             <textarea class="form-control" style="height:200px" placeholder="前序序列输入一颗二叉树" id="preOrderTree"></textarea>
             <div style="height:100px"></div>
             <div class="row">
@@ -269,7 +270,7 @@
     				data:{
     					"inputOrder":"preOrder",
     					"type":"preOrder",
-    					"treeSequence":$("#widthTree")[0].value
+    					"treeSequence":$("#preOrderTree")[0].value
     				},
     				success:function(result){
     					$("#preOrderText")[0].innerHTML=result;
@@ -290,7 +291,7 @@
     				data:{
     					"inputOrder":"preOrder",
     					"type":"inOrder",
-    					"treeSequence":$("#widthTree")[0].value
+    					"treeSequence":$("#preOrderTree")[0].value
     				},
     				success:function(result){
     					$("#inOrderText")[0].innerHTML=result;
@@ -311,7 +312,7 @@
     				data:{
     					"inputOrder":"preOrder",
     					"type":"postOrder",
-    					"treeSequence":$("#widthTree")[0].value
+    					"treeSequence":$("#preOrderTree")[0].value
     				},
     				success:function(result){
     					$("#postOrderText")[0].innerHTML=result;
