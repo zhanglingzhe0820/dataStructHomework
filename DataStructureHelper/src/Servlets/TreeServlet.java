@@ -22,14 +22,25 @@ public class TreeServlet extends HttpServlet {
 	}
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-		String result=calculateSequence(request.getParameter("type"), request.getParameter("treeSequence"));
+		String result=calculateSequence(request.getParameter("inputOrder"),request.getParameter("type"), request.getParameter("treeSequence"));
 		PrintWriter out=response.getWriter();
 		out.write(result);
 		out.flush();
 	}
 	
-	public String calculateSequence(String dev,String input){
-		BinaryNode<String> tree=TreeHelper.makeTree(input);
+	public String calculateSequence(String inputOrder,String dev,String input){
+		BinaryNode<String> tree;
+		switch(inputOrder){
+		case "width":
+			tree=TreeHelper.makeTree(input);
+			break;
+		case "preOrder":
+			tree=TreeHelper.makeTreeByPreOrder(input);
+			break;
+		default:
+			return "error";	
+		}
+		
 		String result;
 		switch(dev){
 		case "preOrder":

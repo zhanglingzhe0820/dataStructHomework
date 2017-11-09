@@ -84,7 +84,8 @@
         </div>
 
         <div id="section">
-            <textarea class="form-control" style="height:200px" placeholder="广度优先输入一颗二叉树" id="tree"></textarea>
+            <textarea class="form-control" style="height:200px" placeholder="广度优先输入一颗二叉树" id="widthTree"></textarea>
+            <textarea class="form-control" style="height:200px" placeholder="前序序列输入一颗二叉树" id="preOrderTree"></textarea>
             <div style="height:100px"></div>
             <div class="row">
                     <div class="col-lg-4">
@@ -96,7 +97,14 @@
                                 <h5 id="preOrderText">result</h5>
                             </div>
                             <div class="panel-footer" style="text-align: center">
+                            	<p>广度优先输入</p>
                                 <button type="button" class="btn btn-info btn-circle btn-xl" onclick="preOrder()">
+                                        <i class="fa fa-check"></i>
+                                </button>
+                            </div>
+                            <div class="panel-footer" style="text-align: center">
+                            	<p>前序序列输入</p>
+                                <button type="button" class="btn btn-primary btn-circle btn-xl" onclick="preOrderByPreOrder()">
                                         <i class="fa fa-check"></i>
                                 </button>
                             </div>
@@ -112,7 +120,14 @@
                                 <h5 id="inOrderText">result</h5>
                             </div>
                             <div class="panel-footer" style="text-align: center">
+                            	<p>广度优先输入</p>
                                 <button type="button" class="btn btn-info btn-circle btn-xl" onclick="inOrder()">
+                                        <i class="fa fa-check"></i>
+                                </button>
+                            </div>
+                            <div class="panel-footer" style="text-align: center">
+                            	<p>前序序列输入</p>
+                                <button type="button" class="btn btn-primary btn-circle btn-xl" onclick="inOrderByPreOrder()">
                                         <i class="fa fa-check"></i>
                                 </button>
                             </div>
@@ -128,7 +143,14 @@
                                 <h5 id="postOrderText">result</h5>
                             </div>
                             <div class="panel-footer" style="text-align: center">
+                            	<p>广度优先输入</p>
                                 <button type="button" class="btn btn-info btn-circle btn-xl" onclick="postOrder()">
+                                        <i class="fa fa-check"></i>
+                                </button>
+                            </div>
+                            <div class="panel-footer" style="text-align: center">
+                            	<p>前序序列输入</p>
+                                <button type="button" class="btn btn-primary btn-circle btn-xl" onclick="postOrderByPreOrder()">
                                         <i class="fa fa-check"></i>
                                 </button>
                             </div>
@@ -182,8 +204,9 @@
 				async:true,
 				type:"POST",
 				data:{
+					"inputOrder":"width",
 					"type":"preOrder",
-					"treeSequence":$("#tree")[0].value
+					"treeSequence":$("#widthTree")[0].value
 				},
 				success:function(result){
 					$("#preOrderText")[0].innerHTML=result;
@@ -202,8 +225,9 @@
     				async:true,
     				type:"POST",
     				data:{
+    					"inputOrder":"width",
     					"type":"inOrder",
-    					"treeSequence":$("#tree")[0].value
+    					"treeSequence":$("#widthTree")[0].value
     				},
     				success:function(result){
     					$("#inOrderText")[0].innerHTML=result;
@@ -222,8 +246,72 @@
     				async:true,
     				type:"POST",
     				data:{
+    					"inputOrder":"width",
     					"type":"postOrder",
-    					"treeSequence":$("#tree")[0].value
+    					"treeSequence":$("#widthTree")[0].value
+    				},
+    				success:function(result){
+    					$("#postOrderText")[0].innerHTML=result;
+    				},
+    				error:function(){
+    					alert("服务器错误");
+    				}
+    			}
+    		)
+    }
+    
+    function preOrderByPreOrder(){
+    	$.ajax(
+    			{
+    				url:"TreeServlet",
+    				async:true,
+    				type:"POST",
+    				data:{
+    					"inputOrder":"preOrder",
+    					"type":"preOrder",
+    					"treeSequence":$("#widthTree")[0].value
+    				},
+    				success:function(result){
+    					$("#preOrderText")[0].innerHTML=result;
+    				},
+    				error:function(){
+    					alert("服务器错误");
+    				}
+    			}
+    		)
+    }
+    
+    function inOrderByPreOrder(){
+    	$.ajax(
+    			{
+    				url:"TreeServlet",
+    				async:true,
+    				type:"POST",
+    				data:{
+    					"inputOrder":"preOrder",
+    					"type":"inOrder",
+    					"treeSequence":$("#widthTree")[0].value
+    				},
+    				success:function(result){
+    					$("#inOrderText")[0].innerHTML=result;
+    				},
+    				error:function(){
+    					alert("服务器错误");
+    				}
+    			}
+    		)
+    }
+    
+    function postOrderByPreOrder(){
+    	$.ajax(
+    			{
+    				url:"TreeServlet",
+    				async:true,
+    				type:"POST",
+    				data:{
+    					"inputOrder":"preOrder",
+    					"type":"postOrder",
+    					"treeSequence":$("#widthTree")[0].value
     				},
     				success:function(result){
     					$("#postOrderText")[0].innerHTML=result;
