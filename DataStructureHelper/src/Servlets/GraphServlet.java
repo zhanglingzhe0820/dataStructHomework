@@ -1,0 +1,42 @@
+package Servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Util.GraphHelper;
+
+@WebServlet("/GraphServlet")
+public class GraphServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+	
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		doPost(request,response);
+	}
+	
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		String result=calculate(request.getParameter("vectors"),request.getParameter("edges"));
+		PrintWriter out=response.getWriter();
+		out.write(result);
+		out.flush();
+	}
+	
+	public String calculate(String vectors,String edges){
+		String[] resultVectors=vectors.split(" ");
+		int[][] resultEdges=new int[resultVectors.length][resultVectors.length];
+		String[] tempEdges=edges.split(" |\n");
+		for(int i=0;i<resultVectors.length;i++){
+			for(int j=0;j<resultVectors.length;j++){
+				resultEdges[i][j]=Integer.parseInt(tempEdges[j+resultVectors.length*i]);
+			}
+		}
+		return GraphHelper.findLoop(resultVectors, resultEdges);
+	}
+
+}

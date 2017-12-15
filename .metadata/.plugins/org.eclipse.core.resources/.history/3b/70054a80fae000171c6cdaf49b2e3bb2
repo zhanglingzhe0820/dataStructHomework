@@ -1,0 +1,61 @@
+package Servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Util.BinaryNode;
+import Util.TreeHelper;
+
+@WebServlet("/GraphServlet")
+public class GraphServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+	
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		doPost(request,response);
+	}
+	
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		String result=calculate(request.getParameter("vectors"),request.getParameter("edges"));
+		PrintWriter out=response.getWriter();
+		out.write(result);
+		out.flush();
+	}
+	
+	public String calculateSequence(String inputOrder,String dev,String input){
+		BinaryNode<String> tree;
+		switch(inputOrder){
+		case "width":
+			tree=TreeHelper.makeTree(input);
+			break;
+		case "preOrder":
+			tree=TreeHelper.makeTreeByPreOrder(input);
+			break;
+		default:
+			return "error";	
+		}
+		
+		String result;
+		switch(dev){
+		case "preOrder":
+			result=tree.preOrder();
+			break;
+		case "inOrder":
+			result=tree.inOrder();
+			break;
+		case "postOrder":
+			result=tree.postOrder();
+			break;
+		default:
+			result="error";
+		}
+		return result;
+	}
+
+}
